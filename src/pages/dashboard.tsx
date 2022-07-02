@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 
-export default function DashBoard() {
+const DashBoard = () => {
   return (
     <>
       <svg
@@ -20,10 +20,12 @@ export default function DashBoard() {
       </svg>
 
       <body>
-        <nav className="top-0 z-100 fixed w-full bg-cyan-500  py-5 px-10 ">
+        <nav className="top-0 z-100 fixed w-full bg-teal-500  py-5 px-10 ">
           <h4 className="text-white font-bold ">Kanu</h4>
         </nav>
       </body>
     </>
   );
-}
+};
+
+export default DashBoard;
