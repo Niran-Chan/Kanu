@@ -1,14 +1,12 @@
 import * as React from "react";
-import App  from './App'
+import App from "./app";
 
 const IndexPage = () => {
   return (
     <>
-   
       <App />
- 
     </>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

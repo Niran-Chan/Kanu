@@ -1,36 +1,44 @@
-import React from 'react'
-import {Link} from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
-const Layout = ({children}) => {
-    const linkStyle = `
+const Layout = ({ children }) => {
+  const linkStyle = `
      Hover:opacity-70
      text-sm
      sm:text-lg
-    `
-    const logoStyle=`
+    `;
+  const logoStyle = `
     text-white 
     font-rammetto
     sm:text-base
     text-sm
-    `
-    return (
-        <div>
-            <nav className="flex sm:justify-between justify-around items-center bg-green-900 lg:px-20 sm:px-6 py-8 text-gray-100">
-                <h3 className={logoStyle}>Kanu</h3>
-                <ul className="flex">
-                    <li className={linkStyle}><Link to="/">Home</Link></li>
-                    <li className={linkStyle}><Link to="/contact">Contact</Link></li>
-                    <li className={linkStyle}><Link to="/about">About</Link></li>
-                </ul>
-            </nav>
+    `;
+  return (
+    <div>
+      <nav className="flex sm:justify-between justify-around items-center bg-green-900 lg:px-20 sm:px-6 py-8 text-gray-100">
+        <h3 className={logoStyle}>Kanu</h3>
+        <ul className="flex">
+          <li className={linkStyle}>
+            <Link to="/">Home</Link>
+          </li>
+          <li className={linkStyle}>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li className={linkStyle}>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
 
-            <main>{children}</main>
+      <main>{children}</main>
 
-            <footer className="text-center py-8 bg-green-900 text-gray-100">
-                <p>Copyright 2022 <span  className={logoStyle}>Kanu</span></p>
-            </footer>
-        </div>
-    )
-}
+      <footer className="text-center py-8 bg-green-900 text-gray-100">
+        <p>
+          Copyright 2022 <span className={logoStyle}>Kanu</span>
+        </p>
+      </footer>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;
