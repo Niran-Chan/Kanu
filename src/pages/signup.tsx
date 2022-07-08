@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { navigate } from "gatsby";
 
-const Login = () => {
+const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,37 +28,35 @@ const Login = () => {
     }
   };
 
-  const checkValidUser = () => {
-    return username == "hi" && password == "pw";
-  };
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    setLoginError(false);
-    setLoading(true);
-    checkFormSubmission();
-    if (checkValidUser()) {
-      navigate("/");
-    } else {
-      setLoading(false);
-      setLoginError(true);
-      setPasswordErrorMessage("Invalid username and email!");
-    }
+  const checkValidCredentials = () => {
+    return true;
   };
 
   const handleCreate = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/signup");
+    setLoginError(false);
+    setLoading(true);
+    checkFormSubmission();
+    if (checkValidCredentials()) {
+      navigate("/");
+    } else {
+      setLoading(false);
+      setLoginError(true);
+      setPasswordErrorMessage("Username already exists in the system!");
+    }
   };
 
-  // oathyu@gmail.com
+  const handleBack = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    navigate("/login");
+  };
 
   return (
     <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
       <div className="grid h-screen place-items-center">
         <form className="bg-gray-900 rounded-lg max-w-[400px] w-full mx-auto px-8 p-8">
           <h2 className="text-4xl dark:text-white text-center font-semibold">
-            Sign In
+            Sign Up
           </h2>
           <div className="flex flex-col text-gray-300 py-2">
             <label>Email</label>
@@ -98,17 +96,17 @@ const Login = () => {
             className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
             type="submit"
             disabled={loading}
-            onClick={handleSubmit}
+            onClick={handleCreate}
           >
-            Submit
+            Sign Up Now!
           </button>
           <button
             className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
             type="submit"
             disabled={loading}
-            onClick={handleCreate}
+            onClick={handleBack}
           >
-            Sign Up
+            Back to Login
           </button>
         </form>
       </div>
@@ -116,4 +114,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
