@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @variants responsive {
+        .masonry {
+            column-gap: 1.5em;
+            column-count: 1;
+        }
+        .masonry-sm {
+            column-gap: 1.5em;
+            column-count: 2;
+        }
+        .masonry-md {
+            column-gap: 1.5em;
+            column-count: 3;
+        }
+        .break-inside {
+            break-inside: avoid;
+        }
+
+    }
+    .logoStyles {
+        @apply text-white sm:text-base text-sm font-bold text-xl tracking-wide
+    }
+    .hrefStyles {
+        @apply lg:inline-flex lg:w-auto px-8 py-2 text-white hover:underline-offset-8 hover:underline hover:decoration-pink-500 font-semibold hover:duration-200 after:duration-500
+    }
+}
