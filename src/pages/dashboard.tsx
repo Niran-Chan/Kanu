@@ -1,31 +1,63 @@
 import React from "react";
 import Layout from "../components/Layout";
+import styles from '../styles/global.css'
+import { graphql, useStaticQuery, Link } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-const DashBoard = () => {
+export default function DashBoard ()
+{
+  const data = useStaticQuery(query); 
+  const items = data.allMarkdownRemark.nodes;
+  console.log(items)
+
+
   return (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-        />
-      </svg>
-
-      <body>
-        <nav className="top-0 z-100 fixed w-full bg-teal-500  py-5 px-10 ">
-          <h4 className="text-white font-bold ">Kanu</h4>
-        </nav>
-      </body>
-    </>
+    <Layout>
+      <div className="masonry">
+        { items.map(item => 
+          <Link to={"/items/" + item.frontmatter.slug } key={item.id}>
+           <GatsbyImage image={getImage(item.frontmatter.thumb.childImageSharp.gatsbyImageData)}  alt="banner" />
+          </Link>
+        )
+        }
+      </div>
+    </Layout>
   );
 };
 
-export default DashBoard;
+
+
+
+export const query = graphql`
+query MyQuery {
+  allMarkdownRemark {
+    nodes {
+      frontmatter {
+        title
+        description
+        slug
+        thumb {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+      id
+    }
+  }
+}
+`
+/////////////////////
+// DEBUGGING QUERY //
+/////////////////////
+
+/*
+export const query = graphql`
+query MyQuery {
+  allFile {
+    totalCount
+  }
+}
+
+`
+*/

@@ -18,12 +18,16 @@ const config: GatsbyConfig = {
     }
   },
   */
-   "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", {
+   "gatsby-plugin-image","gatsby-transformer-remark", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap","gatsby-plugin-sharp","gatsby-transformer-sharp", 
+   {
     resolve: 'gatsby-plugin-manifest',
-    options: {
+    options: 
+    {
       "icon": "src/images/icon.png"
     }
-  }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
+  },
+
+   "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
@@ -38,7 +42,15 @@ const config: GatsbyConfig = {
     },
     __key: "pages"
   },
-  "gatsby-plugin-gatsby-cloud","gatsby-plugin-postcss",
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "items",
+      "path": "./src/items/"
+    },
+    __key: "items"
+  },
+  "gatsby-plugin-gatsby-cloud","gatsby-plugin-postcss"
   ]
 };
 
