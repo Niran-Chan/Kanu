@@ -1,8 +1,8 @@
 import React from "react";
 
 // pages
-import Dashboard from "./Dashboard";
-import Login from "./Login";
+import Dashboard from "./dashboard";
+import Login from "./login";
 
 // router
 import { Router } from "@reach/router";
