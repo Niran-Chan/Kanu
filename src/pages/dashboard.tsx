@@ -13,13 +13,20 @@ export default function DashBoard ()
 
   return (
     <Layout>
-      <div className="masonry">
-        { items.map(item => 
-          <Link to={"/items/" + item.frontmatter.slug } key={item.id}>
-           <GatsbyImage image={getImage(item.frontmatter.thumb.childImageSharp.gatsbyImageData)}  alt="banner" />
-          </Link>
-        )
-        }
+      <div class="mt-20 grid lg:grid-cols-3 gap-4 grow-0">
+          { items.map(item =>
+            
+            <div class="bg-blue-100 rounded-lg object-contain w-50 h-50  ">
+            <Link to={"/items/" + item.frontmatter.slug } key={item.id}> 
+                <GatsbyImage image={getImage(item.frontmatter.thumb.childImageSharp.gatsbyImageData)}  alt="banner" />
+                <div class="font rammetto">
+                    <h1> {item.frontmatter.title}</h1>
+                    <h1> {item.frontmatter.price}</h1> 
+                </div>
+            </Link>
+            </div>
+          )
+          }
       </div>
     </Layout>
   );
@@ -35,10 +42,13 @@ query MyQuery {
       frontmatter {
         title
         description
+        price
         slug
         thumb {
           childImageSharp {
             gatsbyImageData
+
+
           }
         }
       }
