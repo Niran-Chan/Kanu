@@ -40,7 +40,7 @@ const Login = () => {
       <div>{password}</div>
     </>
   ) : (
-    <div className="bg-gray-800 flex flex-col h-screen">
+    <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
       <div className="grid h-screen place-items-center">
         <form className="bg-gray-900 rounded-lg max-w-[400px] w-full mx-auto px-8 p-8">
           <h2 className="text-4xl dark:text-white text-center font-semibold">
@@ -59,7 +59,9 @@ const Login = () => {
               <span className="text-red-300 font-semibold">
                 {usernameErrorMessage}
               </span>
-            ) : null}
+            ) : (
+              <span></span>
+            )}
           </div>
           <div className="flex flex-col text-gray-300 py-2">
             <label>Password</label>
@@ -74,7 +76,9 @@ const Login = () => {
               <span className="text-red-300 font-semibold">
                 {passwordErrorMessage}
               </span>
-            ) : null}
+            ) : (
+              <span></span>
+            )}
           </div>
           <button
             className="w-full my-5 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
