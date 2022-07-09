@@ -19,7 +19,6 @@ const createAuthContext = () =>
 		const [isAuth,setIsAuth] = useState('')
 		return (<AuthContext.Provider value={{isAuth,setIsAuth}} {...props} />)
 
-	
 	}
 		return [AuthContext,AuthProvider] as const
 }

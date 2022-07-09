@@ -14,11 +14,10 @@ const Login = () => {
 
   useEffect(() => 
   { 
+    console.log(isAuth)
     if(isAuth == "AUTHORISED")
       navigate('/')
   },[isAuth])
-
-
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -41,10 +40,18 @@ const Login = () => {
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    setLoginError(false);
-    setLoading(true);
+    
+    checkFormSubmission(); 
+    if(loginError == false)
+    {
+      setLoading(true);
+
+    ///////////////////////
+    // Add DB query here!//
+    ///////////////////////
+
     setIsAuth("AUTHORISED");
-    checkFormSubmission();
+    }
   };
 
   return isAuth ? (

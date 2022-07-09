@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { AuthContext, AuthProvider } from '../context/auth'
+import React, { useContext , useEffect } from 'react';
+import { AuthContext } from '../context/auth'
 import { navigate } from 'gatsby'
 
 type Prop = {
@@ -9,11 +9,11 @@ type Prop = {
 
 export default function PrivateRoute ({children} : Prop){
 
-const { isAuth,setIsAuth }= useContext(AuthContext)
-
-if(isAuth)
-	return 
-	({children})
+	const { isAuth,setIsAuth }= useContext(AuthContext)
+	console.log(isAuth)
+	if(isAuth == "AUTHORISED")
+		return (<>{children}</>)
 	else
-		navigate ('/login')
+		navigate('/login')
+
 }

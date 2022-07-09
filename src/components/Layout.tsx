@@ -7,6 +7,11 @@ const Layout = ({ children }) => {
       <nav className="flex bg-gray-900 items-center flex-none py-8 pl-8">
         <h3 className="logoStyles">Kanu</h3>
         <ul className="lg:inline-flex lg:flex-row lg:ml-auto">
+         <Link to="/sell">
+            <li className="hrefStyles outline rounded-md">
+                Sell
+            </li>
+          </Link>
           <li className="hrefStyles">
             <Link to="/">Home</Link>
           </li>
@@ -16,9 +21,10 @@ const Layout = ({ children }) => {
           <li className="hrefStyles">
             <Link to="/about">About</Link>
           </li>
-          <li className="hrefStyles">
-            <Link to="/sell">Sell</Link>
+           <li className="hrefStyles">
+            <Link to="/login">Login</Link>
           </li>
+         
         </ul>
       </nav>
       <main>{children}</main>
