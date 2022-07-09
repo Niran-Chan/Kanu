@@ -1,30 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { navigate } from "gatsby";
+import { AuthContext } from "../context/authcontext";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
+  const { setIsAuth, setAuthUsername } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
 
-  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
+  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
   const checkFormSubmission = () => {
-    if (!username) {
+    if (!email) {
       setLoginError(true);
-      setUsernameErrorMessage("Please input an email!");
+      setEmailErrorMessage("Please input an email!");
     }
     if (!password) {
       setLoginError(true);
       setPasswordErrorMessage("Please input a password!");
+    }
+    if (!username) {
+      setLoginError(true);
+      setUsernameErrorMessage("Please input a username!");
     }
   };
 
@@ -38,11 +50,13 @@ const SignUp = () => {
     setLoading(true);
     checkFormSubmission();
     if (checkValidCredentials()) {
+      setIsAuth("AUTHORISED");
+      setAuthUsername(email);
       navigate("/");
     } else {
       setLoading(false);
       setLoginError(true);
-      setPasswordErrorMessage("Username already exists in the system!");
+      setPasswordErrorMessage("Email already exists in the system!");
     }
   };
 
@@ -62,14 +76,14 @@ const SignUp = () => {
             <label>Email</label>
             <input
               className="rounded-lg bg-gray-700 mt-2 p-2"
-              value={username}
-              onChange={handleUsername}
+              value={email}
+              onChange={handleEmail}
               type="text"
               placeholder="kanu@gmail.com"
             />
             {loginError ? (
               <span className="text-red-300 font-semibold">
-                {usernameErrorMessage}
+                {emailErrorMessage}
               </span>
             ) : (
               <span></span>
@@ -92,13 +106,30 @@ const SignUp = () => {
               <span></span>
             )}
           </div>
+          <div className="flex flex-col text-gray-300 py-2">
+            <label>Username</label>
+            <input
+              className="rounded-lg bg-gray-700 mt-2 p-2"
+              value={username}
+              onChange={handleUsername}
+              type="text"
+              placeholder="niranshivu"
+            />
+            {loginError ? (
+              <span className="text-red-300 font-semibold">
+                {usernameErrorMessage}
+              </span>
+            ) : (
+              <span></span>
+            )}
+          </div>
           <button
             className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleCreate}
           >
-            Sign Up Now!
+            Create account!
           </button>
           <button
             className="loginButtons"

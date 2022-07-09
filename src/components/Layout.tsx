@@ -1,6 +1,6 @@
 import React, { DetailedHTMLProps, HTMLAttributes, useContext } from "react";
 import { Link } from "gatsby";
-import { AuthContext } from '../context/auth'
+import { AuthContext } from '../context/authcontext'
 const Layout = ({
   children,
 }: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => {
