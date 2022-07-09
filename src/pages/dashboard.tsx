@@ -11,16 +11,17 @@ import { GraphQLData } from "../types/graphqldata";
 const DashBoard = () => {
   const data = useStaticQuery(query);
   const items = data.allMarkdownRemark.nodes;
-  console.log(items);
 
   return (
-    <Layout>
-      <div className="mt-20 grid lg:grid-cols-3 gap-4 grow-0">
-        {items.map((item: GraphQLData) => (
-          <Card item={item} />
-        ))}
-      </div>
-    </Layout>
+    <Layout
+      children={
+        <div className="bg-gray-100 w-full min-h-screen gap-4 flex-wrap justify-center items-center grid grid-rows-2 grid-flow-col">
+          {items.map((item: GraphQLData) => (
+            <Card item={item} />
+          ))}
+        </div>
+      }
+    />
   );
 };
 

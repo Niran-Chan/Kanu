@@ -2,6 +2,7 @@ import { ImageDataLike } from "gatsby-plugin-image";
 
 export type GraphQLData = {
   frontmatter: {
+    [x: string]: ReactNode;
     slug: string;
     thumb: { childImageSharp: { gatsbyImageData: ImageDataLike } };
     title:

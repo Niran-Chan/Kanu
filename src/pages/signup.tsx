@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../context/authcontext";
+import React, { useContext, useState } from "react";
 import { navigate } from "gatsby";
+import { AuthContext } from "../context/authcontext";
 
-const Login = () => {
-  const { isAuth, setIsAuth, setAuthUsername } = useContext(AuthContext);
+const SignUp = () => {
+  const { setIsAuth, setAuthUsername } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-
-  useEffect(() => {
-    console.log(isAuth);
-    if (isAuth == "AUTHORISED") navigate("/");
-  }, [isAuth]);
+  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -22,6 +19,10 @@ const Login = () => {
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+  };
+
+  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
   };
 
   const checkFormSubmission = () => {
@@ -33,31 +34,35 @@ const Login = () => {
       setLoginError(true);
       setPasswordErrorMessage("Please input a password!");
     }
+    if (!username) {
+      setLoginError(true);
+      setUsernameErrorMessage("Please input a username!");
+    }
   };
 
-  const checkValidUser = () => {
-    return email == "hi" && password == "pw";
+  const checkValidCredentials = () => {
+    return true;
   };
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleCreate = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setLoginError(false);
     setLoading(true);
     checkFormSubmission();
-    if (checkValidUser()) {
+    if (checkValidCredentials()) {
       setIsAuth("AUTHORISED");
       setAuthUsername(email);
       navigate("/");
     } else {
       setLoading(false);
       setLoginError(true);
-      setPasswordErrorMessage("Invalid email and email!");
+      setPasswordErrorMessage("Email already exists in the system!");
     }
   };
 
-  const handleCreate = (event: { preventDefault: () => void }) => {
+  const handleBack = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/signup");
+    navigate("/login");
   };
 
   return (
@@ -65,7 +70,7 @@ const Login = () => {
       <div className="grid h-screen place-items-center">
         <form className="bg-gray-900 rounded-lg max-w-[400px] w-full mx-auto px-8 p-8">
           <h2 className="text-4xl dark:text-white text-center font-semibold">
-            Sign In
+            Sign Up
           </h2>
           <div className="flex flex-col text-gray-300 py-2">
             <label>Email</label>
@@ -101,20 +106,38 @@ const Login = () => {
               <span></span>
             )}
           </div>
-          <button
-            className="loginButtons"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Login
-          </button>
+          <div className="flex flex-col text-gray-300 py-2">
+            <label>Username</label>
+            <input
+              className="rounded-lg bg-gray-700 mt-2 p-2"
+              value={username}
+              onChange={handleUsername}
+              type="text"
+              placeholder="niranshivu"
+            />
+            {loginError ? (
+              <span className="text-red-300 font-semibold">
+                {usernameErrorMessage}
+              </span>
+            ) : (
+              <span></span>
+            )}
+          </div>
           <button
             className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleCreate}
           >
-            Sign Up
+            Create account!
+          </button>
+          <button
+            className="loginButtons"
+            type="submit"
+            disabled={loading}
+            onClick={handleBack}
+          >
+            Back to Login
           </button>
         </form>
       </div>
@@ -122,4 +145,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
