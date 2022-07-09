@@ -1,26 +1,23 @@
-import React, { useState,useEffect,useContext } from "react";
-import { AuthContext , AuthProvider } from "../context/auth"
-import { navigate } from 'gatsby'
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/authcontext";
+import { navigate } from "gatsby";
 
-  
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const { isAuth, setIsAuth, setAuthUsername } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const {isAuth,setIsAuth} = useContext(AuthContext);
 
-  useEffect(() => 
-  { 
-    console.log(isAuth)
-    if(isAuth == "AUTHORISED")
-      navigate('/')
-  },[isAuth])
+  useEffect(() => {
+    console.log(isAuth);
+    if (isAuth == "AUTHORISED") navigate("/");
+  }, [isAuth]);
 
-  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,9 +25,9 @@ const Login = () => {
   };
 
   const checkFormSubmission = () => {
-    if (!username) {
+    if (!email) {
       setLoginError(true);
-      setUsernameErrorMessage("Please input an email!");
+      setEmailErrorMessage("Please input an email!");
     }
     if (!password) {
       setLoginError(true);
@@ -38,29 +35,33 @@ const Login = () => {
     }
   };
 
+  const checkValidUser = () => {
+    return email == "hi" && password == "pw";
+  };
+
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    
-    checkFormSubmission(); 
-    if(loginError == false)
-    {
-      setLoading(true);
-
-    ///////////////////////
-    // Add DB query here!//
-    ///////////////////////
-
-    setIsAuth("AUTHORISED");
+    setLoginError(false);
+    setLoading(true);
+    checkFormSubmission();
+    if (checkValidUser()) {
+      setIsAuth("AUTHORISED");
+      setAuthUsername(email);
+      navigate("/");
+    } else {
+      setLoading(false);
+      setLoginError(true);
+      setPasswordErrorMessage("Invalid email and email!");
     }
   };
 
-  return isAuth ? (
-    <>
-      <div>{username}</div>
-      <div>{password}</div>
-    </>
-  ) : (
-      <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
+  const handleCreate = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    navigate("/signup");
+  };
+
+  return (
+    <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
       <div className="grid h-screen place-items-center">
         <form className="bg-gray-900 rounded-lg max-w-[400px] w-full mx-auto px-8 p-8">
           <h2 className="text-4xl dark:text-white text-center font-semibold">
@@ -70,14 +71,14 @@ const Login = () => {
             <label>Email</label>
             <input
               className="rounded-lg bg-gray-700 mt-2 p-2"
-              value={username}
-              onChange={handleUsername}
+              value={email}
+              onChange={handleEmail}
               type="text"
               placeholder="kanu@gmail.com"
             />
             {loginError ? (
               <span className="text-red-300 font-semibold">
-                {usernameErrorMessage}
+                {emailErrorMessage}
               </span>
             ) : (
               <span></span>
@@ -101,16 +102,23 @@ const Login = () => {
             )}
           </div>
           <button
-            className="w-full my-5 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             onClick={handleSubmit}
           >
-            Submit
+            Login
+          </button>
+          <button
+            className="loginButtons"
+            type="submit"
+            disabled={loading}
+            onClick={handleCreate}
+          >
+            Sign Up
           </button>
         </form>
       </div>
     </div>
-
   );
 };
 
