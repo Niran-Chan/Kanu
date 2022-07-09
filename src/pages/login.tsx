@@ -3,21 +3,21 @@ import { AuthContext } from "../context/authcontext";
 import { navigate } from "gatsby";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const { isAuth, setIsAuth, setAuthUsername } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const { isAuth, setIsAuth } = useContext(AuthContext);
 
   useEffect(() => {
     console.log(isAuth);
     if (isAuth == "AUTHORISED") navigate("/");
   }, [isAuth]);
 
-  const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +25,9 @@ const Login = () => {
   };
 
   const checkFormSubmission = () => {
-    if (!username) {
+    if (!email) {
       setLoginError(true);
-      setUsernameErrorMessage("Please input an email!");
+      setEmailErrorMessage("Please input an email!");
     }
     if (!password) {
       setLoginError(true);
@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const checkValidUser = () => {
-    return username == "hi" && password == "pw";
+    return email == "hi" && password == "pw";
   };
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -46,11 +46,12 @@ const Login = () => {
     checkFormSubmission();
     if (checkValidUser()) {
       setIsAuth("AUTHORISED");
+      setAuthUsername(email);
       navigate("/");
     } else {
       setLoading(false);
       setLoginError(true);
-      setPasswordErrorMessage("Invalid username and email!");
+      setPasswordErrorMessage("Invalid email and email!");
     }
   };
 
@@ -70,14 +71,14 @@ const Login = () => {
             <label>Email</label>
             <input
               className="rounded-lg bg-gray-700 mt-2 p-2"
-              value={username}
-              onChange={handleUsername}
+              value={email}
+              onChange={handleEmail}
               type="text"
               placeholder="kanu@gmail.com"
             />
             {loginError ? (
               <span className="text-red-300 font-semibold">
-                {usernameErrorMessage}
+                {emailErrorMessage}
               </span>
             ) : (
               <span></span>
@@ -101,11 +102,11 @@ const Login = () => {
             )}
           </div>
           <button
-            className="w-full my-5 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             onClick={handleSubmit}
           >
-            Submit
+            Login
           </button>
           <button
             className="loginButtons"

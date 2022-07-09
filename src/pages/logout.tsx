@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import { AuthContext } from "../context/authcontext";
 
 export default function Logout() {
