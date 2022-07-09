@@ -19,7 +19,6 @@
         .break-inside {
             break-inside: avoid;
         }
-
     }
     .logoStyles {
         @apply text-black sm:text-base text-sm font-bold text-xl tracking-wide
