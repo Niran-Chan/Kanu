@@ -42,12 +42,6 @@ export const query = graphql`
         }
         id
       }
-    },
-   postgres {
-    customers {
-      id
-      name
-      }
     }
   }
 `;

@@ -9,18 +9,22 @@ const Layout = ({
   };
 
   const {isAuth,setIsAuth} = useContext( AuthContext)
-  const buttonText = isAuth ? "Sign out" : "Login"
-  const link = isAuth ? "/logout" : "/login"
+  const buttonText = (isAuth == "AUTHORISED") ? "Sign out" : "Login"
+  const link = isAuth == "AUTHORISED" ? "/logout" : "/login"
   return (
     <div>
       <nav className="flex bg-gray-100 items-center flex-wrap py-8 pl-8">
-        <h3 className="logoStyles">Kanu</h3>
+        <h3 className="logoStyles">
+        <Link to="/">
+        Kanu
+        </Link>
+        </h3>
         <ul className="lg:inline-flex lg:flex-row lg:ml-auto">
         <Link to="/sell" >
           <li className="hrefStyles  ">Sell</li>
             </Link>
           <li className="hrefStyles">
-            <Link to="/">Home</Link>
+            <Link to="/contact">Contact</Link>
           </li>
           <li className="hrefStyles">
             <Link to="/profile">Profile</Link>
