@@ -93,7 +93,7 @@ const SignUp = () => {
             )}
           </div>
           <button
-            className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleCreate}
@@ -101,7 +101,7 @@ const SignUp = () => {
             Sign Up Now!
           </button>
           <button
-            className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleBack}

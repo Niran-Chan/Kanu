@@ -4,6 +4,7 @@ import React from "react";
 import Dashboard from "./dashboard";
 import Login from "./login";
 import SignUp from "./signup";
+import Profile from "./profile";
 
 // router
 import { Router } from "@reach/router";
@@ -16,6 +17,7 @@ const App = () => {
         <RouterPage path="/" pageComponent={<Dashboard />} />
         <RouterPage path="/login" pageComponent={<Login />} />
         <RouterPage path="/signup" pageComponent={<SignUp />} />
+        <RouterPage path="/profile" pageComponent={<Profile />} />
       </Router>
     </>
   );

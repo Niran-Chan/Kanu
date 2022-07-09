@@ -51,8 +51,6 @@ const Login = () => {
     navigate("/signup");
   };
 
-  // oathyu@gmail.com
-
   return (
     <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
       <div className="grid h-screen place-items-center">
@@ -95,7 +93,7 @@ const Login = () => {
             )}
           </div>
           <button
-            className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleSubmit}
@@ -103,7 +101,7 @@ const Login = () => {
             Submit
           </button>
           <button
-            className="w-full my-2 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
+            className="loginButtons"
             type="submit"
             disabled={loading}
             onClick={handleCreate}
