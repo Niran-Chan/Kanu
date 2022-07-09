@@ -50,7 +50,18 @@ const config: GatsbyConfig = {
     },
     __key: "items"
   },
-  "gatsby-plugin-gatsby-cloud","gatsby-plugin-postcss"
+  "gatsby-plugin-gatsby-cloud","gatsby-plugin-postcss",
+  {
+      resolve: "gatsby-source-pg",
+      options: {
+        connectionString: "postgres://whjjssguwapqfk:ea66cfa61b41023efdf931d77541bc9c11a8b21db93edce09959181707cbdff8@ec2-44-195-162-77.compute-1.amazonaws.com:5432/dfjrg4ev8plcnm",
+        schema: "public",
+        refetchInterval: 60, // Refetch data every 60 seconds
+      },
+  },
+  
+
+
   ]
 };
 

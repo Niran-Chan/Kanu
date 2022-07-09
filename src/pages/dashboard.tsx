@@ -11,7 +11,7 @@ import { GraphQLData } from "../types/graphqldata";
 const DashBoard = () => {
   const data = useStaticQuery(query);
   const items = data.allMarkdownRemark.nodes;
-
+  console.log(data)
   return (
     <Layout
       children={
@@ -42,10 +42,15 @@ export const query = graphql`
         }
         id
       }
+    },
+   postgres {
+    customers {
+      id
+      name
+      }
     }
   }
 `;
-
 /////////////////////
 // DEBUGGING QUERY //
 /////////////////////
@@ -62,3 +67,5 @@ query MyQuery {
 */
 
 export default DashBoard;
+
+
