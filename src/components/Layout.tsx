@@ -18,7 +18,7 @@ const Layout = ({
         <h3 className="logoStyles">Kanu</h3>
         <ul className="lg:inline-flex lg:flex-row lg:ml-auto">
           <Link to="/sell">
-            <li className="hrefStyles  ">Sell</li>
+            <li className="hrefStyles">Sell</li>
           </Link>
           <li className="hrefStyles">
             <Link to="/">Home</Link>
