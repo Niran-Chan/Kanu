@@ -1,23 +1,25 @@
-import React,{useContext} from "react";
-//context
-import PrivateRoute from '../components/PrivateRoute'
+import React from "react";
 
 // pages
 import Dashboard from "./dashboard";
 import Login from "./login";
-import Sell from './sell';
+import SignUp from "./signup";
+import Profile from "./profile";
+
 // router
 import { Router } from "@reach/router";
 import { RouterPage } from "../types/router";
+
 const App = () => {
   return (
-  
+    <>
       <Router>
         <RouterPage path="/" pageComponent={<Dashboard />} />
         <RouterPage path="/login" pageComponent={<Login />} />
-        <RouterPage path="/sell" pageComponent={<Sell />} />
+        <RouterPage path="/signup" pageComponent={<SignUp />} />
+        <RouterPage path="/profile" pageComponent={<Profile />} />
       </Router>
- 
+    </>
   );
 };
 
