@@ -1,18 +1,24 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from "react";
+import React, { DetailedHTMLProps, HTMLAttributes, useContext } from "react";
 import { Link } from "gatsby";
-
+import { AuthContext } from '../context/auth'
 const Layout = ({
   children,
 }: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  const handleSignOut = () => {
+  const handleAuth = () => {
     // handle auth context state
   };
 
+  const {isAuth,setIsAuth} = useContext( AuthContext)
+  const buttonText = isAuth ? "Sign out" : "Login"
+  const link = isAuth ? "/logout" : "/login"
   return (
     <div>
       <nav className="flex bg-gray-100 items-center flex-wrap py-8 pl-8">
         <h3 className="logoStyles">Kanu</h3>
         <ul className="lg:inline-flex lg:flex-row lg:ml-auto">
+        <Link to="/sell" >
+          <li className="hrefStyles  ">Sell</li>
+            </Link>
           <li className="hrefStyles">
             <Link to="/">Home</Link>
           </li>
@@ -20,10 +26,11 @@ const Layout = ({
             <Link to="/profile">Profile</Link>
           </li>
           <li className="hrefStyles">
-            <Link to="/login" onClick={handleSignOut}>
-              Sign Out
+            <Link to={link} onClick={handleAuth}>
+              {buttonText}
             </Link>
           </li>
+
         </ul>
       </nav>
       <main>{children}</main>
