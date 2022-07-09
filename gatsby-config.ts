@@ -54,7 +54,7 @@ const config: GatsbyConfig = {
   {
       resolve: "gatsby-source-pg",
       options: {
-        connectionString: process.env.DATABASE_URL+"?ssl=1",
+        connectionString: process.env.DATABASE_URL+"?sslmode=require",
         schema: "public",
         refetchInterval: 60, // Refetch data every 60 seconds
       },
