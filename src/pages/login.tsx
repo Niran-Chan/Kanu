@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
+import { AuthContext , AuthProvider } from "../context/auth"
+import { navigate } from 'gatsby'
 
+  
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -7,6 +10,15 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const {isAuth,setIsAuth} = useContext(AuthContext);
+
+  useEffect(() => 
+  { 
+    if(isAuth == "AUTHORISED")
+      navigate('/')
+  },[isAuth])
+
+
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -31,16 +43,17 @@ const Login = () => {
     event.preventDefault();
     setLoginError(false);
     setLoading(true);
+    setIsAuth("AUTHORISED");
     checkFormSubmission();
   };
 
-  return loading ? (
+  return isAuth ? (
     <>
       <div>{username}</div>
       <div>{password}</div>
     </>
   ) : (
-    <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
+      <div className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 flex flex-col h-screen">
       <div className="grid h-screen place-items-center">
         <form className="bg-gray-900 rounded-lg max-w-[400px] w-full mx-auto px-8 p-8">
           <h2 className="text-4xl dark:text-white text-center font-semibold">
@@ -90,6 +103,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+
   );
 };
 

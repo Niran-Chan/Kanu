@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 const Layout = ({ children }) => {
   return (
     <div>
-      <nav className="flex bg-gray-900 items-center flex-wrap py-8 pl-8">
+      <nav className="flex bg-gray-900 items-center flex-none py-8 pl-8">
         <h3 className="logoStyles">Kanu</h3>
         <ul className="lg:inline-flex lg:flex-row lg:ml-auto">
           <li className="hrefStyles">
@@ -15,6 +15,9 @@ const Layout = ({ children }) => {
           </li>
           <li className="hrefStyles">
             <Link to="/about">About</Link>
+          </li>
+          <li className="hrefStyles">
+            <Link to="/sell">Sell</Link>
           </li>
         </ul>
       </nav>
