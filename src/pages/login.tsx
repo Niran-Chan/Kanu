@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/authcontext";
 import { navigate } from "gatsby";
 
 const Login = () => {
@@ -8,6 +9,12 @@ const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log(isAuth);
+    if (isAuth == "AUTHORISED") navigate("/");
+  }, [isAuth]);
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -38,6 +45,7 @@ const Login = () => {
     setLoading(true);
     checkFormSubmission();
     if (checkValidUser()) {
+      setIsAuth("AUTHORISED");
       navigate("/");
     } else {
       setLoading(false);
@@ -93,9 +101,8 @@ const Login = () => {
             )}
           </div>
           <button
-            className="loginButtons"
+            className="w-full my-5 py-2 bg-teal-500 rounded text-white hover:shadow-md hover:shadow-teal-500/20"
             type="submit"
-            disabled={loading}
             onClick={handleSubmit}
           >
             Submit

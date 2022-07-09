@@ -5,8 +5,6 @@ import Layout from "../components/Layout";
 import { GraphQLData } from "../types/graphqldata";
 import { query } from "./dashboard";
 
-const arr = ["hi", "lol"]
-
 const Profile = () => {
   const data = useStaticQuery(query);
   const items = data.allMarkdownRemark.nodes;
