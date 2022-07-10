@@ -1,4 +1,4 @@
-![Kanu Logo](./Kanu.png?raw=true "Title")
+![Kanu Logo](./src/images/Kanu.png?raw=true "Title")
 
 Welcome to Kanu, where we hope to make changes to the world in whichever way we can! We hope that this project can be further expanded to help minimise global food wastage. It is made with the idea of a leftover food marketplace, with buyers and sellers selling away any leftover food rather than throwing them away. 
 
