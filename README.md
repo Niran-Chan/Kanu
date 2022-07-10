@@ -1,60 +1,34 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal TypeScript starter
-</h1>
+![Kanu Logo](./Kanu.png?raw=true "Title")
 
-## 🚀 Quick start
+Welcome to Kanu, where we hope to make changes to the world in whichever way we can! We hope that this project can be further expanded to help minimise global food wastage. It is made with the idea of a leftover food marketplace, with buyers and sellers selling away any leftover food rather than throwing them away. 
 
-## Installation
 
-1. Git clone the repo
-2. Run the following :
-	``npm i -g gatsby-cli``
-	``npm i``
-3. To run a development server, Run 
-	``gatsby develop``
-4. Navigate to localhost:8000 to start!    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby
-    ```
 
-2.  **Start developing.**
+# Getting Started
 
-    Navigate into your new site’s directory and start it up.
+### Git Cloning and setting up environment for Gatsby
+You need to install some packages and dependencies! First thing is to git clone our current project! 
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Once done git cloning, run 
+```npm install -g gatsby```
+Then, traverse to the directory with 
+```cd ./kanu``
 
-3.  **Open the code and start customizing!**
+If your Gatsby has any issues, do refer to gatsby's getting started documentation: 
+``` https://www.gatsbyjs.com/docs/tutorial/part-0/```
 
-    Your site is now running at http://localhost:8000!
+Once done, we also need a local instance of gatsby installed into the project so lets run 
+``` npm i gatsby ```
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+### Starting up
 
-4.  **Learn more**
+Run ``` gatsby develop ```
+ 
+If there are any issues with your develop, you can try 
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+	gatsby clean
+	gatbsy develop 
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+	
